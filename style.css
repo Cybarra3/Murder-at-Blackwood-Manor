@@ -286,3 +286,47 @@ margin-top:20px;
 width:100%;
 
 }
+.evidenceCard{
+
+
+background:
+rgba(255,255,255,.1);
+
+
+border-radius:15px;
+
+
+padding:15px;
+
+
+margin:10px 0;
+
+
+}
+
+
+
+.evidenceCard h3{
+
+
+color:#ffd700;
+
+
+}
+
+
+
+#evidenceList,
+#clueList{
+
+
+max-height:60vh;
+
+
+overflow-y:auto;
+
+
+-webkit-overflow-scrolling:touch;
+
+
+}
