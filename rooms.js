@@ -1,75 +1,53 @@
-const rooms = {
+const rooms={
 
 
 foyer:{
 
-
 name:"Grand Foyer",
 
-
 description:
-"The entrance hall of Blackwood Manor. Portraits line the walls.",
-
+"The entrance hall of Blackwood Manor. Portraits watch silently.",
 
 locked:false,
 
-
 evidence:null
 
-
 },
-
 
 
 
 library:{
 
-
 name:"Library",
 
-
 description:
-"Thousands of books cover the walls. A fireplace sits cold.",
-
+"Thousands of books line the walls. Something is hidden here.",
 
 locked:false,
 
-
-evidence:
-
-
-{
+evidence:{
 
 item:"Hidden Letter",
 
 clue:
-"Victor was investigating someone before his death."
+"Victor was investigating someone close to him."
 
 }
-
 
 },
 
 
 
-
 study:{
 
-
 name:"Victor's Study",
-
 
 description:
 "The room where Victor Blackwood was found.",
 
-
 locked:true,
 
-
-evidence:
-
-
-{
+evidence:{
 
 item:"Bloodstained Document",
 
@@ -78,30 +56,20 @@ clue:
 
 }
 
-
 },
-
-
 
 
 
 kitchen:{
 
-
 name:"Kitchen",
 
-
 description:
-"The kitchen is spotless. Something feels unusual.",
-
+"The kitchen looks recently cleaned.",
 
 locked:false,
 
-
-evidence:
-
-
-{
+evidence:{
 
 item:"Strange Bottle",
 
@@ -110,30 +78,20 @@ clue:
 
 }
 
-
 },
-
-
 
 
 
 garden:{
 
-
 name:"Garden",
 
-
 description:
-"Rain covers the grass. Footprints lead toward the woods.",
-
+"Fresh footprints disappear into the woods.",
 
 locked:false,
 
-
-evidence:
-
-
-{
+evidence:{
 
 item:"Footprints",
 
@@ -142,9 +100,7 @@ clue:
 
 }
 
-
 }
-
 
 
 };
