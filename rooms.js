@@ -27,10 +27,10 @@ locked:false,
 
 evidence:{
 
-item:"Hidden Letter",
+item:"Library Key",
 
 clue:
-"Victor was investigating someone close to him."
+"The library contains a hidden message."
 
 }
 
