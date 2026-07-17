@@ -40,12 +40,20 @@ clue:
 
 study:{
 
+
 name:"Victor's Study",
 
+
 description:
-"The room where Victor Blackwood was found.",
+"The door is locked. A strange symbol is carved into the wood.",
+
 
 locked:true,
+
+
+requires:
+"Library Key",
+
 
 evidence:{
 
@@ -56,8 +64,8 @@ clue:
 
 }
 
-},
 
+},
 
 
 kitchen:{
