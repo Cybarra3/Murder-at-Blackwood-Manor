@@ -546,23 +546,19 @@ room.description;
 function searchRoom(){
 
 
-
 if(!currentRoom){
-
 
 alert(
 "Choose a room first."
 );
 
-
 return;
-
 
 }
 
 
 
-let room=
+let room =
 rooms[currentRoom];
 
 
@@ -571,17 +567,45 @@ if(!room.evidence){
 
 
 alert(
-"You search carefully but find nothing."
+"You search carefully but find nothing unusual."
+);
+
+
+return;
+
+}
+
+
+
+addEvidence(
+room.evidence.item
 );
 
 
 
-return;
+room.evidence=null;
+
 
 
 }
 
 
+addEvidence(
+room.evidence.item
+);
+
+
+
+addClue(
+room.evidence.clue
+);
+
+
+
+room.evidence=null;
+
+
+}
 
 addEvidence(
 room.evidence.item
