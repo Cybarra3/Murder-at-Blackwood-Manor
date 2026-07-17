@@ -1,7 +1,14 @@
 let currentScene="intro";
 
+let currentRoom=null;
+
+
 
 window.onload=function(){
+
+
+loadInventory();
+
 
 
 if(!hasSave()){
@@ -24,6 +31,7 @@ document
 function newGame(){
 
 
+
 let save={
 
 
@@ -37,13 +45,22 @@ clues:[]
 };
 
 
+
 saveGame(save);
+
+
+
+inventory=[];
+
+clues=[];
+
 
 
 startGame();
 
 
 }
+
 
 
 
@@ -63,13 +80,26 @@ currentScene=
 save.scene;
 
 
+
+inventory=
+save.inventory || [];
+
+
+
+clues=
+save.clues || [];
+
+
+
 startGame();
 
 
 }
 
 
+
 }
+
 
 
 
@@ -80,6 +110,7 @@ function startGame(){
 document
 .getElementById("titleScreen")
 .classList.add("hidden");
+
 
 
 document
@@ -95,12 +126,15 @@ loadScene(currentScene);
 startDialogue("intro");
 
 
+
 }
 
 
 
 
+
 function loadScene(id){
+
 
 
 let scene=
@@ -121,6 +155,7 @@ document
 scene.text;
 
 
+
 }
 
 
@@ -130,9 +165,11 @@ scene.text;
 function returnMenu(){
 
 
+
 document
 .getElementById("gameScreen")
 .classList.add("hidden");
+
 
 
 document
@@ -140,12 +177,15 @@ document
 .classList.add("hidden");
 
 
+
 document
 .getElementById("titleScreen")
 .classList.remove("hidden");
 
 
+
 }
+
 
 
 
@@ -158,9 +198,11 @@ document
 .classList.add("hidden");
 
 
+
 document
 .getElementById("settings")
 .classList.remove("hidden");
+
 
 
 }
@@ -181,12 +223,18 @@ alert(
 
 
 
-// Dialogue System
+
+
+/* =========================
+      DIALOGUE SYSTEM
+========================= */
 
 
 let currentDialogue=[];
 
 let dialogueIndex=0;
+
+
 
 
 
@@ -197,10 +245,13 @@ currentDialogue=
 dialogues[id];
 
 
+
 dialogueIndex=0;
 
 
+
 showDialogue();
+
 
 
 }
@@ -225,19 +276,23 @@ document
 
 document
 .getElementById("characterImage")
-.src=line.image;
+.src=
+line.image;
 
 
 
 document
 .getElementById("characterName")
-.innerText=line.speaker;
+.innerText=
+line.speaker;
 
 
 
 document
 .getElementById("dialogueText")
-.innerText=line.text;
+.innerText=
+line.text;
+
 
 
 
@@ -245,7 +300,9 @@ let choices=
 document.getElementById("choices");
 
 
+
 choices.innerHTML="";
+
 
 
 
@@ -256,8 +313,10 @@ let button=
 document.createElement("button");
 
 
+
 button.className=
 "choiceButton";
+
 
 
 button.innerText=
@@ -268,6 +327,7 @@ choice.text;
 button.onclick=function(){
 
 
+
 if(choice.next===null){
 
 
@@ -275,6 +335,7 @@ endDialogue();
 
 
 }
+
 else{
 
 
@@ -283,6 +344,7 @@ choice.next;
 
 
 showDialogue();
+
 
 
 }
@@ -295,10 +357,13 @@ showDialogue();
 choices.appendChild(button);
 
 
+
 });
 
 
+
 }
+
 
 
 
@@ -306,12 +371,15 @@ choices.appendChild(button);
 function endDialogue(){
 
 
+
 document
 .getElementById("dialogueBox")
 .classList.add("hidden");
 
 
+
 loadMansion();
+
 
 
 }
@@ -319,14 +387,22 @@ loadMansion();
 
 
 
-// Mansion System
+
+
+
+/* =========================
+      MANSION SYSTEM
+========================= */
+
 
 
 function loadMansion(){
 
 
+
 let container=
 document.getElementById("roomButtons");
+
 
 
 container.innerHTML="";
@@ -336,8 +412,10 @@ container.innerHTML="";
 for(let id in rooms){
 
 
+
 let room=
 rooms[id];
+
 
 
 let button=
@@ -345,35 +423,46 @@ document.createElement("button");
 
 
 
-button.className="roomButton";
+button.className=
+"roomButton";
+
 
 
 
 if(room.locked){
 
 
+
 button.innerText=
 "🔒 "+room.name;
+
 
 
 button.classList.add("locked");
 
 
+
 }
+
 else{
+
 
 
 button.innerText=
 "🚪 "+room.name;
 
 
+
 button.onclick=function(){
+
 
 
 enterRoom(id);
 
 
+
 };
+
 
 
 }
@@ -383,10 +472,17 @@ enterRoom(id);
 container.appendChild(button);
 
 
+
 }
 
 
+
+
 }
+
+
+
+
 
 
 
@@ -394,8 +490,13 @@ container.appendChild(button);
 function enterRoom(id){
 
 
+
 let room=
 rooms[id];
+
+
+
+currentRoom=id;
 
 
 
@@ -410,6 +511,76 @@ document
 .getElementById("sceneText")
 .innerText=
 room.description;
+
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+      INVESTIGATION
+========================= */
+
+
+function searchRoom(){
+
+
+
+if(!currentRoom){
+
+
+alert(
+"Choose a room first."
+);
+
+
+return;
+
+
+}
+
+
+
+let room=
+rooms[currentRoom];
+
+
+
+if(!room.evidence){
+
+
+alert(
+"You search carefully but find nothing."
+);
+
+
+
+return;
+
+
+}
+
+
+
+addEvidence(
+room.evidence.item
+);
+
+
+
+addClue(
+room.evidence.clue
+);
+
+
+
+room.evidence=null;
+
 
 
 }
