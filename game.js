@@ -1,10 +1,14 @@
-let currentScene="intro";
+let currentScene = "intro";
 
-let currentRoom=null;
+let currentRoom = null;
+
+let currentDialogue = [];
+
+let dialogueIndex = 0;
 
 
 
-window.onload=function(){
+window.onload = function(){
 
 
 loadInventory();
@@ -28,11 +32,15 @@ document
 
 
 
+// =============================
+// NEW GAME
+// =============================
+
+
 function newGame(){
 
 
-
-let save={
+let save = {
 
 
 scene:"intro",
@@ -45,15 +53,12 @@ clues:[]
 };
 
 
-
 saveGame(save);
-
 
 
 inventory=[];
 
 clues=[];
-
 
 
 startGame();
@@ -68,7 +73,7 @@ startGame();
 function continueGame(){
 
 
-let save=
+let save =
 loadGame();
 
 
@@ -76,17 +81,17 @@ loadGame();
 if(save){
 
 
-currentScene=
+currentScene =
 save.scene;
 
 
 
-inventory=
+inventory =
 save.inventory || [];
 
 
 
-clues=
+clues =
 save.clues || [];
 
 
@@ -126,34 +131,42 @@ loadScene(currentScene);
 startDialogue("intro");
 
 
-
 }
 
 
 
 
 
+
+// =============================
+// SCENES
+// =============================
+
+
 function loadScene(id){
 
 
-
-let scene=
+let scene =
 scenes[id];
+
+
+
+if(!scene)
+return;
 
 
 
 document
 .getElementById("sceneTitle")
-.innerText=
+.innerText =
 scene.title;
 
 
 
 document
 .getElementById("sceneText")
-.innerText=
+.innerText =
 scene.text;
-
 
 
 }
@@ -162,14 +175,28 @@ scene.text;
 
 
 
-function returnMenu(){
 
+// =============================
+// MENU
+// =============================
+
+
+function returnMenu(){
 
 
 document
 .getElementById("gameScreen")
 .classList.add("hidden");
 
+
+document
+.getElementById("evidenceScreen")
+.classList.add("hidden");
+
+
+document
+.getElementById("notebookScreen")
+.classList.add("hidden");
 
 
 document
@@ -181,7 +208,6 @@ document
 document
 .getElementById("titleScreen")
 .classList.remove("hidden");
-
 
 
 }
@@ -198,15 +224,12 @@ document
 .classList.add("hidden");
 
 
-
 document
 .getElementById("settings")
 .classList.remove("hidden");
 
 
-
 }
-
 
 
 
@@ -225,33 +248,23 @@ alert(
 
 
 
-/* =========================
-      DIALOGUE SYSTEM
-========================= */
 
-
-let currentDialogue=[];
-
-let dialogueIndex=0;
-
-
-
+// =============================
+// DIALOGUE SYSTEM
+// =============================
 
 
 function startDialogue(id){
 
 
-currentDialogue=
+currentDialogue =
 dialogues[id];
-
 
 
 dialogueIndex=0;
 
 
-
 showDialogue();
-
 
 
 }
@@ -263,8 +276,63 @@ showDialogue();
 function showDialogue(){
 
 
-let line=
+let line =
 currentDialogue[dialogueIndex];
+
+
+
+if(!line){
+
+endDialogue();
+
+return;
+
+}
+
+
+
+let image =
+document.getElementById(
+"characterImage"
+);
+
+
+
+image.src =
+line.image;
+
+
+
+image.onerror=function(){
+
+
+console.log(
+"Missing image:",
+line.image
+);
+
+
+
+image.src =
+"assets/characters/missing.jpg";
+
+
+};
+
+
+
+
+document
+.getElementById("characterName")
+.innerText =
+line.speaker;
+
+
+
+document
+.getElementById("dialogueText")
+.innerText =
+line.text;
 
 
 
@@ -274,45 +342,8 @@ document
 
 
 
-let character =
-document.getElementById("characterImage");
 
-
-character.src =
-line.image;
-
-
-character.onerror=function(){
-
-console.log(
-"Missing image:",
-line.image
-);
-
-
-character.src =
-"assets/characters/missing.jpg";
-
-};
-
-
-
-document
-.getElementById("characterName")
-.innerText=
-line.speaker;
-
-
-
-document
-.getElementById("dialogueText")
-.innerText=
-line.text;
-
-
-
-
-let choices=
+let choices =
 document.getElementById("choices");
 
 
@@ -321,21 +352,20 @@ choices.innerHTML="";
 
 
 
-
 line.choices.forEach(choice=>{
 
 
-let button=
+let button =
 document.createElement("button");
 
 
 
-button.className=
+button.className =
 "choiceButton";
 
 
 
-button.innerText=
+button.innerText =
 choice.text;
 
 
@@ -343,8 +373,7 @@ choice.text;
 button.onclick=function(){
 
 
-
-if(choice.next===null){
+if(choice.next === null){
 
 
 endDialogue();
@@ -355,15 +384,16 @@ endDialogue();
 else{
 
 
-dialogueIndex=
+dialogueIndex =
 choice.next;
+
 
 
 showDialogue();
 
 
-
 }
+
 
 
 };
@@ -377,7 +407,6 @@ choices.appendChild(button);
 });
 
 
-
 }
 
 
@@ -385,7 +414,6 @@ choices.appendChild(button);
 
 
 function endDialogue(){
-
 
 
 document
@@ -397,7 +425,6 @@ document
 loadMansion();
 
 
-
 }
 
 
@@ -406,18 +433,20 @@ loadMansion();
 
 
 
-/* =========================
-      MANSION SYSTEM
-========================= */
 
+
+// =============================
+// MANSION SYSTEM
+// =============================
 
 
 function loadMansion(){
 
 
-
-let container=
-document.getElementById("roomButtons");
+let container =
+document.getElementById(
+"roomButtons"
+);
 
 
 
@@ -428,18 +457,17 @@ container.innerHTML="";
 for(let id in rooms){
 
 
-
-let room=
+let room =
 rooms[id];
 
 
 
-let button=
+let button =
 document.createElement("button");
 
 
 
-button.className=
+button.className =
 "roomButton";
 
 
@@ -448,13 +476,14 @@ button.className=
 if(room.locked){
 
 
-
-button.innerText=
-"🔒 "+room.name;
-
+button.innerText =
+"🔒 " + room.name;
 
 
-button.classList.add("locked");
+
+button.classList.add(
+"locked"
+);
 
 
 
@@ -463,18 +492,15 @@ button.classList.add("locked");
 else{
 
 
-
-button.innerText=
-"🚪 "+room.name;
+button.innerText =
+"🚪 " + room.name;
 
 
 
 button.onclick=function(){
 
 
-
 enterRoom(id);
-
 
 
 };
@@ -488,14 +514,10 @@ enterRoom(id);
 container.appendChild(button);
 
 
-
 }
 
 
-
-
 }
-
 
 
 
@@ -506,8 +528,7 @@ container.appendChild(button);
 function enterRoom(id){
 
 
-
-let room=
+let room =
 rooms[id];
 
 
@@ -518,16 +539,15 @@ currentRoom=id;
 
 document
 .getElementById("sceneTitle")
-.innerText=
+.innerText =
 room.name;
 
 
 
 document
 .getElementById("sceneText")
-.innerText=
+.innerText =
 room.description;
-
 
 
 }
@@ -538,21 +558,27 @@ room.description;
 
 
 
-/* =========================
-      INVESTIGATION
-========================= */
+
+
+// =============================
+// SEARCH SYSTEM
+// =============================
 
 
 function searchRoom(){
 
 
+
 if(!currentRoom){
+
 
 alert(
 "Choose a room first."
 );
 
+
 return;
+
 
 }
 
@@ -571,50 +597,28 @@ alert(
 );
 
 
+
 return;
 
-}
-
-
-
-addEvidence(
-room.evidence.item
-);
-
-
-
-room.evidence=null;
-
-
 
 }
 
 
+
+
+let found =
+room.evidence;
+
+
+
 addEvidence(
-room.evidence.item
+found.item
 );
 
 
 
 addClue(
-room.evidence.clue
-);
-
-
-
-room.evidence=null;
-
-
-}
-
-addEvidence(
-room.evidence.item
-);
-
-
-
-addClue(
-room.evidence.clue
+found.clue
 );
 
 
@@ -624,12 +628,27 @@ room.evidence=null;
 
 
 }
+
+
+
+
+
+
+
+
+
+// =============================
+// EVIDENCE BOARD
+// =============================
+
+
 function openEvidence(){
 
 
 document
 .getElementById("gameScreen")
 .classList.add("hidden");
+
 
 
 document
@@ -639,18 +658,35 @@ document
 
 
 let list =
-document.getElementById("evidenceList");
+document.getElementById(
+"evidenceList"
+);
+
 
 
 list.innerHTML="";
 
 
 
+if(inventory.length===0){
+
+
+list.innerHTML =
+"<p>No evidence collected.</p>";
+
+return;
+
+
+}
+
+
+
 inventory.forEach(item=>{
 
 
-let evidence =
+let data =
 evidenceDatabase[item];
+
 
 
 let card =
@@ -658,32 +694,34 @@ document.createElement("div");
 
 
 
-card.className="evidenceCard";
+card.className =
+"evidenceCard";
 
 
 
-card.innerHTML=
+card.innerHTML = `
 
-`
 
 <h3>
 ${item}
 </h3>
 
+
 <p>
-${evidence.description}
+${data.description}
 </p>
 
+
 <strong>
-${evidence.importance}
+${data.importance}
 </strong>
+
 
 `;
 
 
 
 list.appendChild(card);
-
 
 
 });
@@ -694,6 +732,13 @@ list.appendChild(card);
 
 
 
+
+
+
+
+// =============================
+// NOTEBOOK
+// =============================
 
 
 function openNotebook(){
@@ -712,11 +757,26 @@ document
 
 
 let list =
-document.getElementById("clueList");
+document.getElementById(
+"clueList"
+);
 
 
 
 list.innerHTML="";
+
+
+
+if(clues.length===0){
+
+
+list.innerHTML =
+"<p>No clues recorded.</p>";
+
+return;
+
+
+}
 
 
 
@@ -727,12 +787,14 @@ let p =
 document.createElement("p");
 
 
-p.innerText=
-"• "+clue;
+
+p.innerText =
+"• " + clue;
 
 
 
 list.appendChild(p);
+
 
 
 });
@@ -744,13 +806,14 @@ list.appendChild(p);
 
 
 
+
+
 function closeScreens(){
 
 
 document
 .getElementById("evidenceScreen")
 .classList.add("hidden");
-
 
 
 document
