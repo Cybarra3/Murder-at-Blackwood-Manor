@@ -274,10 +274,26 @@ document
 
 
 
-document
-.getElementById("characterImage")
-.src=
+let character =
+document.getElementById("characterImage");
+
+
+character.src =
 line.image;
+
+
+character.onerror=function(){
+
+console.log(
+"Missing image:",
+line.image
+);
+
+
+character.src =
+"assets/characters/missing.jpg";
+
+};
 
 
 
