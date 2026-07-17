@@ -533,21 +533,42 @@ rooms[id];
 
 
 
-currentRoom=id;
+if(room.locked){
 
 
-
-document
-.getElementById("sceneTitle")
-.innerText =
-room.name;
+if(room.requires){
 
 
+if(!inventory.includes(room.requires)){
 
-document
-.getElementById("sceneText")
-.innerText =
-room.description;
+
+alert(
+"🔒 Locked.\n\nYou need: "
++
+room.requires
+);
+
+
+return;
+
+
+}
+
+else{
+
+
+room.locked=false;
+
+
+alert(
+"🔓 The door unlocks."
+);
+
+
+}
+
+
+}
 
 
 }
@@ -555,8 +576,24 @@ room.description;
 
 
 
+currentRoom=id;
 
 
+
+document
+.getElementById("sceneTitle")
+.innerText=
+room.name;
+
+
+
+document
+.getElementById("sceneText")
+.innerText=
+room.description;
+
+
+}
 
 
 
@@ -820,6 +857,100 @@ document
 .getElementById("notebookScreen")
 .classList.add("hidden");
 
+
+
+document
+.getElementById("gameScreen")
+.classList.remove("hidden");
+
+
+}
+
+
+let activePuzzle=null;
+
+
+
+function openPuzzle(id){
+
+
+activePuzzle =
+puzzles[id];
+
+
+
+document
+.getElementById("gameScreen")
+.classList.add("hidden");
+
+
+
+document
+.getElementById("puzzleScreen")
+.classList.remove("hidden");
+
+
+
+document
+.getElementById("puzzleText")
+.innerText =
+"Solve the puzzle to continue.";
+
+
+
+}
+
+
+
+function submitPuzzle(){
+
+
+let answer =
+document
+.getElementById("puzzleInput")
+.value;
+
+
+
+if(answer === activePuzzle.answer){
+
+
+alert(
+"Correct!\n\n"
++
+activePuzzle.success
+);
+
+
+
+closePuzzle();
+
+
+
+}
+
+else{
+
+
+alert(
+"Incorrect."
+);
+
+
+}
+
+
+}
+
+
+
+
+function closePuzzle(){
+
+
+document
+.getElementById("puzzleScreen")
+.classList.add("hidden");
 
 
 document
