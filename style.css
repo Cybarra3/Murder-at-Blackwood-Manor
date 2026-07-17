@@ -265,3 +265,24 @@ font-size:18px;
 
 
 }
+button{
+
+touch-action:manipulation;
+
+-webkit-tap-highlight-color:transparent;
+
+}
+
+
+#gameButtons{
+
+margin-top:20px;
+
+}
+
+
+#gameButtons button{
+
+width:100%;
+
+}
