@@ -284,3 +284,28 @@ margin-top:20px;
 width:100%;
 
 }
+
+#puzzleScreen input{
+
+
+width:90%;
+
+padding:15px;
+
+font-size:20px;
+
+border-radius:10px;
+
+margin:20px;
+
+
+}
+
+
+#puzzleText{
+
+font-size:18px;
+
+line-height:1.5;
+
+}
