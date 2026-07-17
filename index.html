@@ -20,21 +20,16 @@
 <div id="game">
 
 
-<!-- TITLE SCREEN -->
-
 <section id="titleScreen">
-
 
 <h1>
 Murder at<br>
 Blackwood Manor
 </h1>
 
-
 <p class="subtitle">
 A Detective Mystery Adventure
 </p>
-
 
 
 <button onclick="newGame()">
@@ -58,10 +53,7 @@ SETTINGS
 
 
 
-<!-- GAME SCREEN -->
-
 <section id="gameScreen" class="hidden">
-
 
 
 <div id="scene">
@@ -80,7 +72,6 @@ The storm approaches...
 <div id="roomButtons"></div>
 
 
-
 <button id="searchButton" onclick="searchRoom()">
 🔎 Search Room
 </button>
@@ -90,9 +81,6 @@ The storm approaches...
 
 
 
-
-
-<!-- DIALOGUE -->
 
 <div id="dialogueBox" class="hidden">
 
@@ -117,6 +105,7 @@ The storm approaches...
 
 <div id="gameButtons">
 
+
 <button onclick="openEvidence()">
 🔎 Evidence Board
 </button>
@@ -125,7 +114,6 @@ The storm approaches...
 <button onclick="openNotebook()">
 📖 Detective Notebook
 </button>
-
 
 
 <button onclick="returnMenu()">
@@ -143,14 +131,13 @@ MENU
 
 
 
-
-
-<!-- SETTINGS -->
 <section id="evidenceScreen" class="hidden">
+
 
 <h2>
 Evidence Board
 </h2>
+
 
 <div id="evidenceList"></div>
 
@@ -159,6 +146,7 @@ Evidence Board
 BACK
 </button>
 
+
 </section>
 
 
@@ -166,6 +154,7 @@ BACK
 
 
 <section id="notebookScreen" class="hidden">
+
 
 <h2>
 Detective Notebook
@@ -179,7 +168,13 @@ Detective Notebook
 BACK
 </button>
 
+
 </section>
+
+
+
+
+
 <section id="settings" class="hidden">
 
 
@@ -215,7 +210,6 @@ BACK
 <script src="inventory.js"></script>
 <script src="evidence.js"></script>
 <script src="game.js"></script>
-
 
 
 </body>
