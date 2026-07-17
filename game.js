@@ -6,9 +6,11 @@ window.onload=function(){
 
 if(!hasSave()){
 
+
 document
 .getElementById("continueBtn")
 .style.display="none";
+
 
 }
 
@@ -17,18 +19,20 @@ document
 
 
 
+
+
 function newGame(){
 
 
 let save={
 
+
 scene:"intro",
 
 inventory:[],
 
-clues:[],
+clues:[]
 
-suspectProgress:{}
 
 };
 
@@ -43,14 +47,17 @@ startGame();
 
 
 
+
 function continueGame(){
 
 
-let save =
+let save=
 loadGame();
 
 
+
 if(save){
+
 
 currentScene=
 save.scene;
@@ -61,7 +68,9 @@ startGame();
 
 }
 
+
 }
+
 
 
 
@@ -78,7 +87,12 @@ document
 .classList.remove("hidden");
 
 
+
 loadScene(currentScene);
+
+
+
+startDialogue("intro");
 
 
 }
@@ -89,14 +103,16 @@ loadScene(currentScene);
 function loadScene(id){
 
 
-let scene =
+let scene=
 scenes[id];
+
 
 
 document
 .getElementById("sceneTitle")
 .innerText=
 scene.title;
+
 
 
 document
@@ -106,6 +122,8 @@ scene.text;
 
 
 }
+
+
 
 
 
@@ -131,6 +149,7 @@ document
 
 
 
+
 function openSettings(){
 
 
@@ -148,17 +167,165 @@ document
 
 
 
+
 function toggleMusic(){
+
 
 alert(
 "Music system coming soon."
 );
 
+
 }
+
+
+
+
+// Dialogue System
+
+
+let currentDialogue=[];
+
+let dialogueIndex=0;
+
+
+
+function startDialogue(id){
+
+
+currentDialogue=
+dialogues[id];
+
+
+dialogueIndex=0;
+
+
+showDialogue();
+
+
+}
+
+
+
+
+
+function showDialogue(){
+
+
+let line=
+currentDialogue[dialogueIndex];
+
+
+
+document
+.getElementById("dialogueBox")
+.classList.remove("hidden");
+
+
+
+document
+.getElementById("characterImage")
+.src=line.image;
+
+
+
+document
+.getElementById("characterName")
+.innerText=line.speaker;
+
+
+
+document
+.getElementById("dialogueText")
+.innerText=line.text;
+
+
+
+let choices=
+document.getElementById("choices");
+
+
+choices.innerHTML="";
+
+
+
+line.choices.forEach(choice=>{
+
+
+let button=
+document.createElement("button");
+
+
+button.className=
+"choiceButton";
+
+
+button.innerText=
+choice.text;
+
+
+
+button.onclick=function(){
+
+
+if(choice.next===null){
+
+
+endDialogue();
+
+
+}
+else{
+
+
+dialogueIndex=
+choice.next;
+
+
+showDialogue();
+
+
+}
+
+
+};
+
+
+
+choices.appendChild(button);
+
+
+});
+
+
+}
+
+
+
+
+function endDialogue(){
+
+
+document
+.getElementById("dialogueBox")
+.classList.add("hidden");
+
+
+loadMansion();
+
+
+}
+
+
+
+
+// Mansion System
+
+
 function loadMansion(){
 
 
-let container =
+let container=
 document.getElementById("roomButtons");
 
 
@@ -169,41 +336,42 @@ container.innerHTML="";
 for(let id in rooms){
 
 
-let room =
+let room=
 rooms[id];
 
 
-
-let button =
+let button=
 document.createElement("button");
 
 
 
-button.className =
-"roomButton";
+button.className="roomButton";
 
 
 
 if(room.locked){
 
-button.classList.add("locked");
 
-button.innerText =
-"🔒 " + room.name;
+button.innerText=
+"🔒 "+room.name;
+
+
+button.classList.add("locked");
 
 
 }
 else{
 
 
-button.innerText =
-"🚪 " + room.name;
-
+button.innerText=
+"🚪 "+room.name;
 
 
 button.onclick=function(){
 
+
 enterRoom(id);
+
 
 };
 
@@ -215,34 +383,33 @@ enterRoom(id);
 container.appendChild(button);
 
 
-
 }
 
 
 }
+
 
 
 
 function enterRoom(id){
 
 
-let room =
+let room=
 rooms[id];
 
 
 
 document
 .getElementById("sceneTitle")
-.innerText =
+.innerText=
 room.name;
 
 
 
 document
 .getElementById("sceneText")
-.innerText =
+.innerText=
 room.description;
-
 
 
 }
