@@ -1,6 +1,4 @@
-const SAVE_KEY =
-"blackwood_save";
-
+const SAVE_KEY="blackwood_save";
 
 
 function saveGame(data){
@@ -20,14 +18,7 @@ let data =
 localStorage.getItem(SAVE_KEY);
 
 
-if(!data){
-
-return null;
-
-}
-
-
-return JSON.parse(data);
+return data ? JSON.parse(data) : null;
 
 }
 
