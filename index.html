@@ -1,3 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<title>Murder at Blackwood Manor</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div id="game">
+
+
+<section id="titleScreen">
+
+
+<h1>
+Murder at<br>
+Blackwood Manor
+</h1>
+
+
+<p class="subtitle">
+A Detective Mystery Adventure
+</p>
+
+
+
+<button onclick="newGame()">
+NEW GAME
+</button>
+
+
+
+<button id="continueBtn" onclick="continueGame()">
+CONTINUE
+</button>
+
+
+
+<button onclick="openSettings()">
+SETTINGS
+</button>
+
+
+</section>
+
+
+
+
 <section id="gameScreen" class="hidden">
 
 
@@ -14,12 +73,11 @@ The storm approaches...
 </p>
 
 
-
 <div id="roomButtons"></div>
 
 
-
 </div>
+
 
 
 
@@ -42,9 +100,54 @@ The storm approaches...
 
 
 
+
 <button onclick="returnMenu()">
 MENU
 </button>
 
 
+
 </section>
+
+
+
+
+
+<section id="settings" class="hidden">
+
+
+<h2>
+Settings
+</h2>
+
+
+
+<button onclick="toggleMusic()">
+Music ON/OFF
+</button>
+
+
+
+<button onclick="returnMenu()">
+BACK
+</button>
+
+
+</section>
+
+
+
+</div>
+
+
+
+<script src="save.js"></script>
+<script src="scenes.js"></script>
+<script src="rooms.js"></script>
+<script src="dialogue.js"></script>
+<script src="game.js"></script>
+
+
+</body>
+
+</html>
