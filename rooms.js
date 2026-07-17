@@ -8,13 +8,17 @@ name:"Grand Foyer",
 
 
 description:
-"The entrance hall of Blackwood Manor. A massive staircase rises above you. Family portraits stare down silently.",
+"The entrance hall of Blackwood Manor. Portraits line the walls.",
 
 
-locked:false
+locked:false,
+
+
+evidence:null
 
 
 },
+
 
 
 
@@ -25,13 +29,27 @@ name:"Library",
 
 
 description:
-"Thousands of books cover the walls. A cold fireplace sits in the corner.",
+"Thousands of books cover the walls. A fireplace sits cold.",
 
 
-locked:false
+locked:false,
+
+
+evidence:
+
+
+{
+
+item:"Hidden Letter",
+
+clue:
+"Victor was investigating someone before his death."
+
+}
 
 
 },
+
 
 
 
@@ -42,13 +60,28 @@ name:"Victor's Study",
 
 
 description:
-"This is where Victor Blackwood was found.",
+"The room where Victor Blackwood was found.",
 
 
-locked:true
+locked:true,
+
+
+evidence:
+
+
+{
+
+item:"Bloodstained Document",
+
+clue:
+"Victor planned to change his will."
+
+}
 
 
 },
+
+
 
 
 
@@ -59,13 +92,28 @@ name:"Kitchen",
 
 
 description:
-"The kitchen is spotless. Someone has cleaned recently.",
+"The kitchen is spotless. Something feels unusual.",
 
 
-locked:false
+locked:false,
+
+
+evidence:
+
+
+{
+
+item:"Strange Bottle",
+
+clue:
+"Someone altered Victor's medication."
+
+}
 
 
 },
+
+
 
 
 
@@ -76,13 +124,27 @@ name:"Garden",
 
 
 description:
-"Rain falls over the garden. Fresh footprints disappear into the mud.",
+"Rain covers the grass. Footprints lead toward the woods.",
 
 
-locked:false
+locked:false,
+
+
+evidence:
+
+
+{
+
+item:"Footprints",
+
+clue:
+"Someone entered the mansion during the storm."
+
+}
 
 
 }
+
 
 
 };
