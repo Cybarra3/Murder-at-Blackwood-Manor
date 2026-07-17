@@ -5,7 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Murder at Blackwood Manor</title>
 
@@ -19,6 +19,8 @@
 
 <div id="game">
 
+
+<!-- TITLE SCREEN -->
 
 <section id="titleScreen">
 
@@ -40,11 +42,9 @@ NEW GAME
 </button>
 
 
-
 <button id="continueBtn" onclick="continueGame()">
 CONTINUE
 </button>
-
 
 
 <button onclick="openSettings()">
@@ -57,7 +57,11 @@ SETTINGS
 
 
 
+
+<!-- GAME SCREEN -->
+
 <section id="gameScreen" class="hidden">
+
 
 
 <div id="scene">
@@ -76,10 +80,19 @@ The storm approaches...
 <div id="roomButtons"></div>
 
 
+
+<button id="searchButton" onclick="searchRoom()">
+🔎 Search Room
+</button>
+
+
 </div>
 
 
 
+
+
+<!-- DIALOGUE -->
 
 <div id="dialogueBox" class="hidden">
 
@@ -101,9 +114,14 @@ The storm approaches...
 
 
 
+
+<div id="gameButtons">
+
+
 <button onclick="showInventory()">
 🎒 Evidence
 </button>
+
 
 
 <button onclick="showNotebook()">
@@ -111,9 +129,13 @@ The storm approaches...
 </button>
 
 
+
 <button onclick="returnMenu()">
 MENU
 </button>
+
+
+</div>
 
 
 
@@ -123,6 +145,10 @@ MENU
 
 
 
+
+
+<!-- SETTINGS -->
+
 <section id="settings" class="hidden">
 
 
@@ -131,11 +157,9 @@ Settings
 </h2>
 
 
-
 <button onclick="toggleMusic()">
-Music ON/OFF
+🎵 Music ON/OFF
 </button>
-
 
 
 <button onclick="returnMenu()">
@@ -151,11 +175,15 @@ BACK
 
 
 
+
+
 <script src="save.js"></script>
 <script src="scenes.js"></script>
 <script src="rooms.js"></script>
 <script src="dialogue.js"></script>
+<script src="inventory.js"></script>
 <script src="game.js"></script>
+
 
 
 </body>
