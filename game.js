@@ -6,6 +6,8 @@ let currentDialogue = [];
 
 let dialogueIndex = 0;
 
+let activePuzzle = null;
+
 
 
 window.onload = function(){
@@ -53,7 +55,9 @@ clues:[]
 };
 
 
+
 saveGame(save);
+
 
 
 inventory=[];
@@ -61,10 +65,12 @@ inventory=[];
 clues=[];
 
 
+
 startGame();
 
 
 }
+
 
 
 
@@ -109,7 +115,10 @@ startGame();
 
 
 
+
+
 function startGame(){
+
 
 
 document
@@ -132,6 +141,7 @@ startDialogue("intro");
 
 
 }
+
 
 
 
@@ -176,6 +186,8 @@ scene.text;
 
 
 
+
+
 // =============================
 // MENU
 // =============================
@@ -189,14 +201,23 @@ document
 .classList.add("hidden");
 
 
+
 document
 .getElementById("evidenceScreen")
 .classList.add("hidden");
 
 
+
 document
 .getElementById("notebookScreen")
 .classList.add("hidden");
+
+
+
+document
+.getElementById("puzzleScreen")
+.classList.add("hidden");
+
 
 
 document
@@ -233,6 +254,8 @@ document
 
 
 
+
+
 function toggleMusic(){
 
 
@@ -242,6 +265,8 @@ alert(
 
 
 }
+
+
 
 
 
@@ -261,7 +286,9 @@ currentDialogue =
 dialogues[id];
 
 
+
 dialogueIndex=0;
+
 
 
 showDialogue();
@@ -283,9 +310,12 @@ currentDialogue[dialogueIndex];
 
 if(!line){
 
+
 endDialogue();
 
+
 return;
+
 
 }
 
@@ -304,13 +334,6 @@ line.image;
 
 
 image.onerror=function(){
-
-
-console.log(
-"Missing image:",
-line.image
-);
-
 
 
 image.src =
@@ -388,12 +411,10 @@ dialogueIndex =
 choice.next;
 
 
-
 showDialogue();
 
 
 }
-
 
 
 };
@@ -403,11 +424,11 @@ showDialogue();
 choices.appendChild(button);
 
 
-
 });
 
 
 }
+
 
 
 
@@ -457,6 +478,7 @@ container.innerHTML="";
 for(let id in rooms){
 
 
+
 let room =
 rooms[id];
 
@@ -480,13 +502,6 @@ button.innerText =
 "🔒 " + room.name;
 
 
-
-button.classList.add(
-"locked"
-);
-
-
-
 }
 
 else{
@@ -496,7 +511,6 @@ button.innerText =
 "🚪 " + room.name;
 
 
-
 button.onclick=function(){
 
 
@@ -504,7 +518,6 @@ enterRoom(id);
 
 
 };
-
 
 
 }
@@ -517,12 +530,20 @@ container.appendChild(button);
 }
 
 
+
 }
 
 
 
 
 
+
+
+
+
+// =============================
+// ENTER ROOM + LOCK SYSTEM
+// =============================
 
 
 function enterRoom(id){
@@ -539,14 +560,20 @@ if(room.locked){
 if(room.requires){
 
 
+
 if(!inventory.includes(room.requires)){
 
 
 alert(
+
 "🔒 Locked.\n\nYou need: "
+
 +
+
 room.requires
+
 );
+
 
 
 return;
@@ -560,19 +587,20 @@ else{
 room.locked=false;
 
 
+
 alert(
 "🔓 The door unlocks."
 );
 
 
-}
-
 
 }
 
 
 }
 
+
+}
 
 
 
@@ -582,18 +610,64 @@ currentRoom=id;
 
 document
 .getElementById("sceneTitle")
-.innerText=
+.innerText =
 room.name;
 
 
 
 document
 .getElementById("sceneText")
-.innerText=
+.innerText =
 room.description;
 
 
+
+
+
+// Victor Study safe
+
+if(id==="study"){
+
+
+setTimeout(function(){
+
+
+let open =
+confirm(
+
+"Victor's Study contains a locked safe.\n\nTry to open it?"
+
+);
+
+
+
+if(open){
+
+
+openPuzzle(
+"victorSafe"
+);
+
+
 }
+
+
+
+},500);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
 
 
 
@@ -639,7 +713,6 @@ return;
 
 
 }
-
 
 
 
@@ -708,8 +781,9 @@ list.innerHTML="";
 if(inventory.length===0){
 
 
-list.innerHTML =
+list.innerHTML=
 "<p>No evidence collected.</p>";
+
 
 return;
 
@@ -736,23 +810,15 @@ card.className =
 
 
 
-card.innerHTML = `
+card.innerHTML =
 
+`
 
-<h3>
-${item}
-</h3>
+<h3>${item}</h3>
 
+<p>${data.description}</p>
 
-<p>
-${data.description}
-</p>
-
-
-<strong>
-${data.importance}
-</strong>
-
+<strong>${data.importance}</strong>
 
 `;
 
@@ -765,6 +831,7 @@ list.appendChild(card);
 
 
 }
+
 
 
 
@@ -807,8 +874,9 @@ list.innerHTML="";
 if(clues.length===0){
 
 
-list.innerHTML =
+list.innerHTML=
 "<p>No clues recorded.</p>";
+
 
 return;
 
@@ -824,14 +892,12 @@ let p =
 document.createElement("p");
 
 
-
 p.innerText =
 "• " + clue;
 
 
 
 list.appendChild(p);
-
 
 
 });
@@ -858,7 +924,6 @@ document
 .classList.add("hidden");
 
 
-
 document
 .getElementById("gameScreen")
 .classList.remove("hidden");
@@ -867,8 +932,16 @@ document
 }
 
 
-let activePuzzle=null;
 
+
+
+
+
+
+
+// =============================
+// PUZZLE SYSTEM
+// =============================
 
 
 function openPuzzle(id){
@@ -892,20 +965,32 @@ document
 
 
 document
+.getElementById("puzzleInput")
+.value="";
+
+
+
+document
 .getElementById("puzzleText")
 .innerText =
-"Solve the puzzle to continue.";
 
+"Solve the puzzle to continue.";
 
 
 }
 
 
 
+
+
+
+
 function submitPuzzle(){
 
 
+
 let answer =
+
 document
 .getElementById("puzzleInput")
 .value;
@@ -915,10 +1000,15 @@ document
 if(answer === activePuzzle.answer){
 
 
+
 alert(
+
 "Correct!\n\n"
+
 +
+
 activePuzzle.success
+
 );
 
 
@@ -933,7 +1023,7 @@ else{
 
 
 alert(
-"Incorrect."
+"Incorrect combination."
 );
 
 
@@ -945,12 +1035,16 @@ alert(
 
 
 
+
+
+
 function closePuzzle(){
 
 
 document
 .getElementById("puzzleScreen")
 .classList.add("hidden");
+
 
 
 document
