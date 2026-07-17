@@ -155,3 +155,94 @@ alert(
 );
 
 }
+function loadMansion(){
+
+
+let container =
+document.getElementById("roomButtons");
+
+
+container.innerHTML="";
+
+
+
+for(let id in rooms){
+
+
+let room =
+rooms[id];
+
+
+
+let button =
+document.createElement("button");
+
+
+
+button.className =
+"roomButton";
+
+
+
+if(room.locked){
+
+button.classList.add("locked");
+
+button.innerText =
+"🔒 " + room.name;
+
+
+}
+else{
+
+
+button.innerText =
+"🚪 " + room.name;
+
+
+
+button.onclick=function(){
+
+enterRoom(id);
+
+};
+
+
+}
+
+
+
+container.appendChild(button);
+
+
+
+}
+
+
+}
+
+
+
+function enterRoom(id){
+
+
+let room =
+rooms[id];
+
+
+
+document
+.getElementById("sceneTitle")
+.innerText =
+room.name;
+
+
+
+document
+.getElementById("sceneText")
+.innerText =
+room.description;
+
+
+
+}
