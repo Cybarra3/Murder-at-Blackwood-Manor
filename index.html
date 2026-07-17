@@ -117,15 +117,13 @@ The storm approaches...
 
 <div id="gameButtons">
 
-
-<button onclick="showInventory()">
-🎒 Evidence
+<button onclick="openEvidence()">
+🔎 Evidence Board
 </button>
 
 
-
-<button onclick="showNotebook()">
-📖 Notebook
+<button onclick="openNotebook()">
+📖 Detective Notebook
 </button>
 
 
@@ -148,7 +146,40 @@ MENU
 
 
 <!-- SETTINGS -->
+<section id="evidenceScreen" class="hidden">
 
+<h2>
+Evidence Board
+</h2>
+
+<div id="evidenceList"></div>
+
+
+<button onclick="closeScreens()">
+BACK
+</button>
+
+</section>
+
+
+
+
+
+<section id="notebookScreen" class="hidden">
+
+<h2>
+Detective Notebook
+</h2>
+
+
+<div id="clueList"></div>
+
+
+<button onclick="closeScreens()">
+BACK
+</button>
+
+</section>
 <section id="settings" class="hidden">
 
 
