@@ -256,3 +256,31 @@ font-size:18px;
 }
 
 }
+.choiceButton{
+
+background:#333;
+
+}
+
+
+#choices{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+
+#gameButtons{
+
+margin-top:20px;
+
+}
+
+
+#gameButtons button{
+
+width:100%;
+
+}
