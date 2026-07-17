@@ -1,6 +1,6 @@
-let inventory = [];
+let inventory=[];
 
-let clues = [];
+let clues=[];
 
 
 
@@ -13,12 +13,15 @@ if(!inventory.includes(item)){
 inventory.push(item);
 
 
+addClue(
+"Found evidence: "+item
+);
+
+
 saveInventory();
 
 
-alert(
-"Evidence Found:\n\n" + item
-);
+showFoundMessage(item);
 
 
 }
@@ -49,6 +52,7 @@ saveInventory();
 
 
 
+
 function saveInventory(){
 
 
@@ -66,6 +70,7 @@ inventory;
 
 save.clues =
 clues;
+
 
 
 saveGame(save);
@@ -95,6 +100,7 @@ inventory =
 save.inventory || [];
 
 
+
 clues =
 save.clues || [];
 
@@ -107,74 +113,32 @@ save.clues || [];
 
 
 
-function showInventory(){
+
+function showFoundMessage(item){
 
 
-let text="Evidence:\n\n";
-
-
-if(inventory.length===0){
-
-
-text += "Nothing found yet.";
-
-
-}
-else{
-
-
-inventory.forEach(item=>{
-
-
-text += "• "+item+"\n";
-
-
-});
-
-
-}
+let data =
+evidenceDatabase[item];
 
 
 
-alert(text);
+alert(
 
+"🔎 Evidence Found\n\n"
 
-}
++
 
+item
 
++
 
+"\n\n"
 
++
 
-function showNotebook(){
+data.description
 
-
-let text="Detective Notebook:\n\n";
-
-
-if(clues.length===0){
-
-
-text += "No clues recorded.";
-
-
-}
-else{
-
-
-clues.forEach(clue=>{
-
-
-text += "• "+clue+"\n";
-
-
-});
-
-
-}
-
-
-
-alert(text);
+);
 
 
 }
