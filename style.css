@@ -194,3 +194,38 @@ padding:16px;
 
 
 }
+#roomButtons{
+
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:10px;
+
+margin-top:20px;
+
+
+}
+
+
+
+.roomButton{
+
+
+background:#3b2a1f;
+
+font-size:16px;
+
+}
+
+
+
+.locked{
+
+
+background:#222;
+
+opacity:.5;
+
+}
