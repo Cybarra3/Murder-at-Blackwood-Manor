@@ -3,6 +3,7 @@ box-sizing:border-box;
 }
 
 
+
 body{
 
 margin:0;
@@ -10,10 +11,12 @@ margin:0;
 height:100vh;
 
 background:
+
 linear-gradient(
-rgba(0,0,0,.55),
+rgba(0,0,0,.65),
 rgba(0,0,0,.85)
 ),
+
 url("assets/images/manor.jpg");
 
 
@@ -21,15 +24,14 @@ background-size:cover;
 
 background-position:center;
 
-font-family:
-Georgia,
-serif;
+font-family:Georgia, serif;
 
 color:white;
 
 overflow:hidden;
 
 }
+
 
 
 #game{
@@ -64,11 +66,7 @@ font-size:42px;
 
 line-height:1.1;
 
-text-shadow:
-0 0 15px black;
-
-animation:
-fadeIn 2s;
+text-shadow:0 0 20px black;
 
 }
 
@@ -77,8 +75,6 @@ fadeIn 2s;
 .subtitle{
 
 font-size:20px;
-
-opacity:.8;
 
 margin-bottom:40px;
 
@@ -95,9 +91,9 @@ padding:18px;
 
 margin:10px;
 
-border-radius:15px;
-
 border:none;
+
+border-radius:15px;
 
 background:#7b1e1e;
 
@@ -106,13 +102,6 @@ color:white;
 font-size:20px;
 
 font-weight:bold;
-
-box-shadow:
-0 5px 15px black;
-
-
-transition:.2s;
-
 
 }
 
@@ -136,43 +125,115 @@ display:none;
 
 #scene{
 
-background:
-rgba(0,0,0,.65);
 
-padding:25px;
+background:
+
+rgba(0,0,0,.70);
+
+
+padding:20px;
 
 border-radius:20px;
 
-}
-
-
-
-@keyframes fadeIn{
-
-from{
-
-opacity:0;
-
-transform:
-translateY(30px);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:
-translateY(0);
-
-}
 
 }
 
 
 
-/* Mobile adjustments */
+#dialogueBox{
+
+
+background:
+
+rgba(0,0,0,.85);
+
+
+padding:20px;
+
+border-radius:20px;
+
+margin-top:20px;
+
+}
+
+
+
+#characterImage{
+
+
+width:140px;
+
+height:140px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:3px solid white;
+
+}
+
+
+
+#characterName{
+
+font-size:24px;
+
+}
+
+
+
+#dialogueText{
+
+font-size:18px;
+
+line-height:1.5;
+
+}
+
+
+
+.choiceButton{
+
+background:#333;
+
+font-size:16px;
+
+}
+
+
+
+#roomButtons{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:10px;
+
+}
+
+
+
+.roomButton{
+
+background:#3b2a1f;
+
+font-size:15px;
+
+}
+
+
+
+.locked{
+
+background:#222;
+
+opacity:.5;
+
+}
+
+
 
 @media(max-width:600px){
 
@@ -188,44 +249,7 @@ button{
 
 font-size:18px;
 
-padding:16px;
-
 }
 
-
-}
-#roomButtons{
-
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:10px;
-
-margin-top:20px;
-
-
-}
-
-
-
-.roomButton{
-
-
-background:#3b2a1f;
-
-font-size:16px;
-
-}
-
-
-
-.locked{
-
-
-background:#222;
-
-opacity:.5;
 
 }
