@@ -31,7 +31,6 @@ showFoundMessage(item);
 
 
 
-
 function addClue(clue){
 
 
@@ -52,26 +51,18 @@ saveInventory();
 
 
 
-
 function saveInventory(){
 
 
-let save =
-loadGame();
-
+let save=loadGame();
 
 
 if(save){
 
 
-save.inventory =
-inventory;
+save.inventory=inventory;
 
-
-save.clues =
-clues;
-
-
+save.clues=clues;
 
 saveGame(save);
 
@@ -84,59 +75,41 @@ saveGame(save);
 
 
 
-
 function loadInventory(){
 
 
-let save =
-loadGame();
-
+let save=loadGame();
 
 
 if(save){
 
 
-inventory =
-save.inventory || [];
+inventory=save.inventory||[];
 
-
-
-clues =
-save.clues || [];
-
+clues=save.clues||[];
 
 }
 
 
 }
-
-
 
 
 
 function showFoundMessage(item){
 
 
-let data =
-evidenceDatabase[item];
-
+let e=evidenceDatabase[item];
 
 
 alert(
 
-"🔎 Evidence Found\n\n"
+"🔎 Evidence Found\n\n"+
 
-+
+item+
 
-item
+"\n\n"+
 
-+
-
-"\n\n"
-
-+
-
-data.description
+e.description
 
 );
 
