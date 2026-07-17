@@ -3,7 +3,6 @@ box-sizing:border-box;
 }
 
 
-
 body{
 
 margin:0;
@@ -24,7 +23,7 @@ background-size:cover;
 
 background-position:center;
 
-font-family:Georgia, serif;
+font-family:Georgia,serif;
 
 color:white;
 
@@ -76,26 +75,13 @@ h1{
 
 font-size:42px;
 
-line-height:1.1;
-
 text-shadow:0 0 20px black;
 
 }
 
 
 
-.subtitle{
-
-font-size:20px;
-
-margin-bottom:40px;
-
-}
-
-
-
 button{
-
 
 width:90%;
 
@@ -114,6 +100,8 @@ color:white;
 font-size:20px;
 
 font-weight:bold;
+
+touch-action:manipulation;
 
 }
 
@@ -137,16 +125,11 @@ display:none;
 
 #scene{
 
-
-background:
-
-rgba(0,0,0,.70);
-
+background:rgba(0,0,0,.75);
 
 padding:20px;
 
 border-radius:20px;
-
 
 }
 
@@ -154,11 +137,7 @@ border-radius:20px;
 
 #dialogueBox{
 
-
-background:
-
-rgba(0,0,0,.85);
-
+background:rgba(0,0,0,.85);
 
 padding:20px;
 
@@ -172,44 +151,15 @@ margin-top:20px;
 
 #characterImage{
 
-
 width:140px;
 
 height:140px;
 
-border-radius:50%;
-
 object-fit:cover;
 
+border-radius:50%;
+
 border:3px solid white;
-
-}
-
-
-
-#characterName{
-
-font-size:24px;
-
-}
-
-
-
-#dialogueText{
-
-font-size:18px;
-
-line-height:1.5;
-
-}
-
-
-
-.choiceButton{
-
-background:#333;
-
-font-size:16px;
 
 }
 
@@ -239,16 +189,58 @@ font-size:15px;
 
 .locked{
 
+opacity:.5;
+
 background:#222;
 
-opacity:.5;
+}
+
+
+
+#searchButton{
+
+background:#8b5a2b;
+
+}
+
+
+
+.evidenceCard{
+
+background:rgba(255,255,255,.1);
+
+padding:15px;
+
+margin:10px;
+
+border-radius:15px;
+
+}
+
+
+
+.evidenceCard h3{
+
+color:#ffd700;
+
+}
+
+
+
+#evidenceList,
+#clueList{
+
+max-height:60vh;
+
+overflow-y:auto;
+
+-webkit-overflow-scrolling:touch;
 
 }
 
 
 
 @media(max-width:600px){
-
 
 h1{
 
@@ -262,71 +254,5 @@ button{
 font-size:18px;
 
 }
-
-
-}
-button{
-
-touch-action:manipulation;
-
--webkit-tap-highlight-color:transparent;
-
-}
-
-
-#gameButtons{
-
-margin-top:20px;
-
-}
-
-
-#gameButtons button{
-
-width:100%;
-
-}
-.evidenceCard{
-
-
-background:
-rgba(255,255,255,.1);
-
-
-border-radius:15px;
-
-
-padding:15px;
-
-
-margin:10px 0;
-
-
-}
-
-
-
-.evidenceCard h3{
-
-
-color:#ffd700;
-
-
-}
-
-
-
-#evidenceList,
-#clueList{
-
-
-max-height:60vh;
-
-
-overflow-y:auto;
-
-
--webkit-overflow-scrolling:touch;
-
 
 }
