@@ -1,13 +1,12 @@
-const evidenceDatabase = {
+const evidenceDatabase={
 
 
 "Hidden Letter":{
 
 description:
-"A hidden letter found behind a book in the library. It appears Victor was investigating someone close to him.",
+"A hidden letter showing Victor was investigating someone.",
 
-importance:
-"Important"
+importance:"Important"
 
 },
 
@@ -16,10 +15,9 @@ importance:
 "Bloodstained Document":{
 
 description:
-"A damaged document found in Victor's study. It mentions a change to the family will.",
+"A damaged document about Victor's new will.",
 
-importance:
-"Critical"
+importance:"Critical"
 
 },
 
@@ -28,10 +26,9 @@ importance:
 "Strange Bottle":{
 
 description:
-"A small bottle hidden in the kitchen. The label has been removed.",
+"A suspicious bottle with the label removed.",
 
-importance:
-"Important"
+importance:"Important"
 
 },
 
@@ -40,13 +37,11 @@ importance:
 "Footprints":{
 
 description:
-"Muddy footprints leading toward the woods. They appear to belong to someone wearing expensive shoes.",
+"Muddy footprints leading into the woods.",
 
-importance:
-"Useful"
+importance:"Useful"
 
 }
-
 
 
 };
